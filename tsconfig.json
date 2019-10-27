@@ -1,0 +1,35 @@
+{
+    "compilerOptions": {
+      "module": "amd",
+      "moduleResolution": "node",
+      "noImplicitAny": true,
+      "esModuleInterop": true,
+      "sourceMap": false,
+      "jsx": "react",
+      "jsxFactory": "tsx",
+      "target": "es5",
+      "experimentalDecorators": true,
+      "preserveConstEnums": true,
+      "suppressImplicitAnyIndexErrors": true,
+      "outDir": "vta_03/js_synergis",
+      "lib": ["es2017", "dom", "scripthost"]
+    },
+    "include": [
+      "synergis/**/*"
+    ],
+    "files": [
+        "./synergis_augmentations/index.d.ts",
+        "./synergis_augmentations/modules.d.ts",
+        "./node_modules/dojo-typings/dojo/1.11/index.d.ts",
+        "./node_modules/dojo-typings/dojo/1.11/modules.d.ts",
+        "./node_modules/dojo-typings/dijit/1.11/index.d.ts",
+        "./node_modules/dojo-typings/dijit/1.11/modules.d.ts",
+        "./node_modules/dojo-typings/dojox/1.11/index.d.ts",
+        "./node_modules/dojo-typings/dojox/1.11/modules.d.ts",
+        "./node_modules/dojo-typings/custom/dgrid/1.1/dgrid.d.ts",
+        "./node_modules/dojo-typings/custom/dstore/1.1/dstore.d.ts"
+    ],
+    "exclude": [
+      "node_modules"
+    ]
+  }

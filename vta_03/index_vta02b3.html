@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+		<meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
+
+		<title>vector-tile-analysis 0.2.b3</title>
+				
+		<link rel="stylesheet" href="http://w-lap-fleischer.synergis.intern/extlib/js_arcgis_4_13/esri/themes/dark/main.css">
+		<link rel="stylesheet" href="http://w-lap-fleischer.synergis.intern/extlib/js_arcgis_4_13/dijit/themes/tundra/tundra.css">
+		<link rel="stylesheet" href="http://w-lap-fleischer.synergis.intern/extlib/js_arcgis_4_13/dojox/widget/ColorPicker/ColorPicker.css" />
+		<link rel="stylesheet" href="css_synergis/vta00b3.css">
+				
+				
+		<script>
+		//a global variable being used in dojo.js and init.js wher 
+		var localDojoBase = 'http://w-lap-fleischer.synergis.intern/extlib/js_arcgis_4_13/dojo';
+		var dojoConfig = {
+			"async": false,
+			"tlmSiblingOfDojo": false,
+			"isDebug": false,
+			"packages": [
+				{
+					"name": "synergis",
+					"location": "http://w-lap-fleischer.synergis.intern/vta_03/js_synergis" 
+				},
+				{
+					"name": "@amcharts",
+					"location": "http://w-lap-fleischer.synergis.intern/extlib/js_amcharts" 
+				}					
+			]
+		};
+  		</script>
+  		
+  		<script	src="http://w-lap-fleischer.synergis.intern/extlib/js_arcgis_4_13/init.js"></script>
+  		<script src="http://w-lap-fleischer.synergis.intern/extlib/js_amcharts/amcharts4/core.js"></script>
+		<script src="http://w-lap-fleischer.synergis.intern/extlib/js_amcharts/amcharts4/charts.js"></script>
+		<script src="http://w-lap-fleischer.synergis.intern/extlib/js_amcharts/amcharts4/themes/dark.js"></script>
+		<script src="http://w-lap-fleischer.synergis.intern/extlib/js_amcharts/amcharts4/themes/animated.js"></script>
+  		
+  		
+		<script>
+
+			function init() {
+				require(["synergis/main"]);
+			}
+		
+  		</script>  		
+  		
+	</head>
+	<body onload="init()">
+	
+		<!--  
+		<a href="https://developers.arcgis.com/javascript/latest/guide/typescript-setup/">https://developers.arcgis.com/javascript/latest/guide/typescript-setup/</a><br>
+		<a href="https://code.visualstudio.com/docs/typescript/typescript-compiling">https://code.visualstudio.com/docs/typescript/typescript-compiling</a><br>
+		<a href="https://github.com/miracle2k/protobuf/blob/master/java/src/main/java/com/google/protobuf/CodedInputStream.java">https://github.com/miracle2k/protobuf/blob/master/java/src/main/java/com/google/protobuf/CodedInputStream.java</a>
+		-->
+			
+		<div id="layout_div_main" style="height: 100%; width: 100%;"></div>
+		
+	</body>
+</html>
