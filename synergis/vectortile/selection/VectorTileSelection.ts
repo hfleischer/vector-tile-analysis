@@ -179,7 +179,7 @@ export class VectorTileSelection {
     clearTreeeData(): void {
 
         let emptyData: ITreeData[] = [
-            new TreeDataImpl(DataType.get(DataType.INDEX_________UNKNOWN), Uid.random16(), 'no active tiles found', -1, Color.parseHex('#FF0000'), null, null)
+            new TreeDataImpl(DataType.get(DataType.INDEX_________UNKNOWN), Uid.random16(), 'no active tiles found', -1, Color.parseHex('#457786'), null, null)
         ];
         //apply the evaluated active tiles to tree / chart / and this instance
         this.layoutTree.replaceData(emptyData);
