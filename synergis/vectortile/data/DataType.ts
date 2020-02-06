@@ -247,7 +247,7 @@ export class DataTypeStyleColor implements IDataType {
  */
 export class DataTypeStyleOpacity implements IDataType {
     getIconNode(treeData: ITreeData): ITreeIconNode {
-        return new TreeIconNodeImpl('', IconConstants.ICON_LOW_VISION, 'scale(0.8)', '0px', Color.white());
+        return new TreeIconNodeImpl('', IconConstants.ICON_LOW_VISION, 'scale(0.8)', '0px', Color.mapContentIconNode());
     }
     visitLabelNode(treeData: ITreeData, labelNode: HTMLDivElement, contentNode: HTMLDivElement): void {
         let paint: IPaint =  VectorTileAnalysisApp.mapContent.findPaint(treeData.getParent());
@@ -269,7 +269,7 @@ export class DataTypeStyleOpacity implements IDataType {
  */
 export class DataTypeStyleDimension implements IDataType {
     getIconNode(treeData: ITreeData): ITreeIconNode {
-        return new TreeIconNodeImpl('', IconConstants.ICON_ARROW_UP_DOWN, 'scale(0.38) translate(0px, -10px)', '0px', Color.white());
+        return new TreeIconNodeImpl('', IconConstants.ICON_ARROW_UP_DOWN, 'scale(0.38) translate(0px, -10px)', '0px', Color.mapContentIconNode());
     }
     visitLabelNode(treeData: ITreeData, labelNode: HTMLDivElement, contentNode: HTMLDivElement): void {
         let paint: IPaint =  VectorTileAnalysisApp.mapContent.findPaint(treeData.getParent());

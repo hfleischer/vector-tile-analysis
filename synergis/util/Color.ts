@@ -12,15 +12,15 @@ export class Color {
     static readonly HUE_STEP_LAYER: number = 0.20;
 
     //initial tile color
-    static readonly tileHsv: number[] = [ Math.random(), 1, 1 ];
+    static readonly tileHsv: number[] = [ 0.27, 1, 0.75 ];
 
     static nextLayerColor(): IColor {
         Color.tileHsv[0] += Color.HUE_STEP_LAYER + (0.5 - Math.random()) * 0.1;
         return new ColorImpl([ Color.tileHsv[0], Color.tileHsv[1], Color.tileHsv[2] ]);
     }
 
-    static white(): IColor {
-        return new ColorImpl([1, 0, 1]);
+    static mapContentIconNode(): IColor {
+        return Color.parseHex('#111111');
     }
 
     static parseHex(hex: string): IColor {

@@ -127,13 +127,13 @@ export class LayerSetImpl implements ILayerSet  {
      * boundaries and borders are not included, these are always on, unless the entire layer-set is turned off completely
      */
     getTreeData(): ITreeData {
-        let treeData: ITreeData = new TreeDataImpl(DataType.get(DataType.INDEX_______LAYER_SET), this.id, this.title, -1, Color.white(), this.vectorBaseLayer.fullExtent, null);
+        let treeData: ITreeData = new TreeDataImpl(DataType.get(DataType.INDEX_______LAYER_SET), this.id, this.title, -1, Color.mapContentIconNode(), this.vectorBaseLayer.fullExtent, null);
         if (this.vectorUserLayer != null) {
-            let treeDataVectorUser = new TreeDataImpl(DataType.get(DataType.INDEX______MAP__LAYER), this.vectorUserLayer.id, this.vectorUserLayer.title, -1, Color.white(), this.vectorUserLayer.fullExtent, null);
+            let treeDataVectorUser = new TreeDataImpl(DataType.get(DataType.INDEX______MAP__LAYER), this.vectorUserLayer.id, this.vectorUserLayer.title, -1, Color.mapContentIconNode(), this.vectorUserLayer.fullExtent, null);
             treeData.addChild(treeDataVectorUser);
             this.paintSets.forEach(paintSet => treeDataVectorUser.addChild(paintSet.getTreeData()));
         }
-        let treeDataVectorBase: ITreeData = new TreeDataImpl(DataType.get(DataType.INDEX______MAP__LAYER), this.vectorBaseLayer.id, this.vectorBaseLayer.title, -1, Color.white(), this.vectorBaseLayer.fullExtent, null);
+        let treeDataVectorBase: ITreeData = new TreeDataImpl(DataType.get(DataType.INDEX______MAP__LAYER), this.vectorBaseLayer.id, this.vectorBaseLayer.title, -1, Color.mapContentIconNode(), this.vectorBaseLayer.fullExtent, null);
         treeData.addChild(treeDataVectorBase);
         return treeData;
     }    
@@ -207,7 +207,7 @@ export class LayerSetImpl implements ILayerSet  {
                 },
             };
             
-            console.log('layerDefinition', JSON.stringify(layerDefinition));
+            //console.log('layerDefinition', JSON.stringify(layerDefinition));
 
             this.vectorUserLayer = new VectorTileLayerSyn(layerDefinition, this.color);
             VectorTileAnalysisApp.vectorUserLayers.add(this.vectorUserLayer);

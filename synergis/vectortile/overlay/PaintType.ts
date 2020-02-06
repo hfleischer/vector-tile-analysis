@@ -17,7 +17,7 @@ export class PaintTypePolygon implements IPaintType {
         return [
             new PaintImplFill(layerSet, paintSet, 0.5),
             new PaintImplLine(layerSet, paintSet, 1.5, 0.75),
-            new PaintImplPoint(layerSet, paintSet, 1.5, 1)
+            new PaintImplPoint(layerSet, paintSet, 2.0, 1)
         ]
     }
 }
@@ -31,7 +31,7 @@ export class PaintTypePolyline implements IPaintType {
     createPaints(layerSet: ILayerSet, paintSet: IPaintSet): IPaint[] {
         return [
             new PaintImplLine(layerSet, paintSet, 2, 0.75),
-            new PaintImplPoint(layerSet, paintSet, 2.0, 1)
+            new PaintImplPoint(layerSet, paintSet, 2.5, 1)
         ]
     }
 }

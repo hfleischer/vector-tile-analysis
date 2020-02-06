@@ -26,7 +26,7 @@ export class TreeDataProviderImplMapLayer implements ITreeDataProvider {
     }
 
     getTreeData(): ITreeData {
-        return new TreeDataImpl(DataType.get(DataType.INDEX______MAP__LAYER), this.getId(), this.layer.title, -1, Color.white(), this.layer.fullExtent, null);
+        return new TreeDataImpl(DataType.get(DataType.INDEX______MAP__LAYER), this.getId(), this.layer.title, -1, Color.mapContentIconNode(), this.layer.fullExtent, null);
     }
 
 }

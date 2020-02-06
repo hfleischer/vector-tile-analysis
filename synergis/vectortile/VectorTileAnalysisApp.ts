@@ -18,6 +18,8 @@ import { MapContent } from "../toc/MapContent";
 import { LayoutBlock } from "../layout/LayoutBlock";
 import { ILayerSet } from "../layer/ILayerSet";
 import { LayerSetImpl } from "../layer/LayerSetImpl";
+import { IColor } from "../util/IColor";
+import { Color } from "../util/Color";
 
 export class VectorTileAnalysisApp {
 
@@ -28,7 +30,7 @@ export class VectorTileAnalysisApp {
     private static layoutMain: LayoutBorder; 
 
     //primary gui elements
-    private static layoutHeader: LayoutToolbar;    
+    private static layoutHeader: LayoutContent;    
     private static layoutCenter: LayoutBorder;
     private static layoutStatus: LayoutContent;
 
@@ -42,6 +44,9 @@ export class VectorTileAnalysisApp {
     private static layoutViewX: LayoutBlock;
     private static layoutScale: LayoutBlock;
     private static layoutLevel: LayoutBlock;
+
+    private static layoutMapColor1: LayoutBlock;
+    private static layoutMapColor2: LayoutBlock;
 
     /**
      * special layout element, a color picker ready to be shown
@@ -72,12 +77,12 @@ export class VectorTileAnalysisApp {
         VectorTileAnalysisApp.layoutMain = new LayoutBorder(VectorTileAnalysisApp.layoutHook, LayoutBorder.CENTER, 'main', 'width:100%; height:100%'); 
 
         //primary gui elements
-        VectorTileAnalysisApp.layoutHeader = new LayoutToolbar(VectorTileAnalysisApp.layoutMain, LayoutBorder.TOP, 'toolbar', 'width:100%; height:20px');    
+        VectorTileAnalysisApp.layoutHeader = new LayoutContent(VectorTileAnalysisApp.layoutMain, LayoutBorder.TOP, 'toolbar', 'overflow: hidden; background-color: var(--pane-background); width:100%; height:24px; margin: 6px 6px 6px 6px; color: var(--font-color)');    
         VectorTileAnalysisApp.layoutCenter = new LayoutBorder(VectorTileAnalysisApp.layoutMain, LayoutBorder.CENTER, 'content', 'width:100%; height:100%');
-        VectorTileAnalysisApp.layoutStatus = new LayoutContent(VectorTileAnalysisApp.layoutMain, LayoutBorder.BOTTOM, 'statusbar', 'width:100%; height:16px; margin: 0px 6px 6px 6px; border: 1px solid var(--gui-border-color); color: var(--font-color)');
+        VectorTileAnalysisApp.layoutStatus = new LayoutContent(VectorTileAnalysisApp.layoutMain, LayoutBorder.BOTTOM, 'statusbar', 'overflow: hidden; background-color: var(--pane-background); width:100%; height:16px; margin: 0px 6px 6px 6px; color: var(--font-color)');
 
         //center gui elements (map in the center, tabs to the right)
-        VectorTileAnalysisApp.layoutMap = new LayoutContent(VectorTileAnalysisApp.layoutCenter, LayoutBorder.CENTER, 'map', 'width:60%; height:100%; border: 1px solid var(--gui-border-color); padding: 0px; margin: 0px 0px 6px 6px');
+        VectorTileAnalysisApp.layoutMap = new LayoutContent(VectorTileAnalysisApp.layoutCenter, LayoutBorder.CENTER, 'map', 'border:none; width:60%; height:100%; padding: 0px; margin: 0px 0px 6px 6px; background-color: var(--pane-background)');
         VectorTileAnalysisApp.layoutTab = new LayoutTabs(VectorTileAnalysisApp.layoutCenter, LayoutBorder.RIGHT, 'meta', 'width:40%; height:100%');
         VectorTileAnalysisApp.layoutTabTileSelection = new LayoutBorder(VectorTileAnalysisApp.layoutTab, LayoutBorder.CENTER, 'tile details', 'width:100%; height:100%');
 
@@ -92,10 +97,29 @@ export class VectorTileAnalysisApp {
         VectorTileAnalysisApp.layoutTab.dojoElement.addChild(VectorTileAnalysisApp.layoutTabTileSelection.dojoElement);
         VectorTileAnalysisApp.layoutTab.dojoElement.addChild(VectorTileAnalysisApp.mapContentTree.dojoElement);
 
-        VectorTileAnalysisApp.layoutViewX = new LayoutBlock(VectorTileAnalysisApp.layoutStatus, LayoutBorder.CENTER, 'pointer-x', 'display:inline-block;width:150px;text-align:right');
-        VectorTileAnalysisApp.layoutViewY = new LayoutBlock(VectorTileAnalysisApp.layoutStatus, LayoutBorder.CENTER, 'pointer-y', 'display:inline-block;width:150px;text-align:left');
-        VectorTileAnalysisApp.layoutScale = new LayoutBlock(VectorTileAnalysisApp.layoutStatus, LayoutBorder.CENTER, 'scale', 'display:inline-block;width:200px;text-align:left');
-        VectorTileAnalysisApp.layoutLevel = new LayoutBlock(VectorTileAnalysisApp.layoutStatus, LayoutBorder.CENTER, 'zoom', 'display:inline-block;width:200px;text-align:left');                
+        VectorTileAnalysisApp.layoutViewX = new LayoutBlock(VectorTileAnalysisApp.layoutStatus, LayoutBorder.CENTER, 'pointer-x', 'display:inline-block; width:150px; text-align:right; background-color: var(--pane-background)');
+        VectorTileAnalysisApp.layoutViewY = new LayoutBlock(VectorTileAnalysisApp.layoutStatus, LayoutBorder.CENTER, 'pointer-y', 'display:inline-block; width:150px; text-align:left; background-color: var(--pane-background)');
+        VectorTileAnalysisApp.layoutScale = new LayoutBlock(VectorTileAnalysisApp.layoutStatus, LayoutBorder.CENTER, 'scale', 'display:inline-block; width:200px; text-align:left; background-color: var(--pane-background)');
+        VectorTileAnalysisApp.layoutLevel = new LayoutBlock(VectorTileAnalysisApp.layoutStatus, LayoutBorder.CENTER, 'zoom', 'display:inline-block; width:200px; text-align:left; background-color: var(--pane-background)');                
+
+        VectorTileAnalysisApp.addMapBackgroundColorChoice(Color.parseHex('#000000'));
+        VectorTileAnalysisApp.addMapBackgroundColorChoice(Color.parseHex('#00384d'));
+        VectorTileAnalysisApp.addMapBackgroundColorChoice(Color.parseHex('#0082b3'));
+        VectorTileAnalysisApp.addMapBackgroundColorChoice(Color.parseHex('#FFFFFF'));
+
+        VectorTileAnalysisApp.addSpatialBookmark('basemap sample tile', {
+            center: [15.11, 48.22],   
+            scale: 577790,
+        });     
+        VectorTileAnalysisApp.addSpatialBookmark('park in saudi arabia', {
+            center: [36.48, 29.35],   
+            scale: 4622324
+        });
+        VectorTileAnalysisApp.addSpatialBookmark('berlin detail', {
+            center: [13.397827153552527, 52.519563527352574],   
+            scale: 9000
+        });
+
 
         //get the entire layout started
         VectorTileAnalysisApp.layoutHook.startup(); 
@@ -104,7 +128,27 @@ export class VectorTileAnalysisApp {
 
     }
 
-    
+    static addSpatialBookmark(title: string, target: any) {
+        let spatialBookmarkChoice: LayoutBlock = new LayoutBlock(VectorTileAnalysisApp.layoutHeader, LayoutBorder.CENTER, 'zoom', 'cursor: pointer; display:inline-block; margin: 4px 4px 4px 0px; width:16px; float: right; background-color: var(--pane-background)');  
+        spatialBookmarkChoice.getHtmlElement().innerHTML = '<img src="images/sbm16.png" width="16" height="16" title="' + title + '" />';     
+        spatialBookmarkChoice.getHtmlElement().onclick = function() {
+            VectorTileAnalysisApp.view.goTo(target, {
+                duration: 7000
+            });
+        }        
+    };
+
+    static addMapBackgroundColorChoice(color: IColor): void {
+        let mapBackgroundColorChoice: LayoutBlock = new LayoutBlock(VectorTileAnalysisApp.layoutHeader, LayoutBorder.CENTER, 'zoom', 'cursor: pointer; display:inline-block; margin: 4px 0px 4px 4px; width:16px; text-align:left; border: 1px solid var(--page-background); background-color: ' + color.getHex());  
+        mapBackgroundColorChoice.getHtmlElement().innerHTML = '&nbsp;';     
+        mapBackgroundColorChoice.getHtmlElement().onclick = function() {
+            VectorTileAnalysisApp.setMapBackground(color);
+        }
+    }
+
+    static setMapBackground(color: IColor): void {
+        VectorTileAnalysisApp.layoutMap.getHtmlElement().style.backgroundColor = color.getHex();
+    }
 
     /**
      * find a tile-boundary-layer-set be the root layer id (no postfixes)
@@ -183,9 +227,14 @@ export class VectorTileAnalysisApp {
         VectorTileAnalysisApp.view.ui.remove('zoom');
 
         watchUtils.whenFalse(VectorTileAnalysisApp.view, ['updating', 'interacting', 'animating'], () => {
-            console.log('updating selection');
             VectorTileAnalysisApp.vectorTileSelection.update(VectorTileAnalysisApp.view, VectorTileAnalysisApp.layerSets);
         });
+
+        /*
+        VectorTileAnalysisApp.view.watch('center', center => {
+            console.log('center', center,  VectorTileAnalysisApp.view.scale);
+        });
+        */
 
         VectorTileAnalysisApp.view.on('pointer-move', event => {
             var point = VectorTileAnalysisApp.view.toMap({x: event.x, y: event.y});
@@ -214,8 +263,8 @@ export class VectorTileAnalysisApp {
 
         VectorTileAnalysisApp.view.when(() => {
             VectorTileAnalysisApp.view.goTo({
-                center: [16.3, 48.2],   
-                scale: 8000000
+                center: [16.87, 52.48],   
+                scale: 8000000,
             });
         });
 

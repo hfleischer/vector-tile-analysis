@@ -1,15 +1,12 @@
 /* base settings */
 :root {
 	
-	--page-background: #DDDDDD;
-	--pane-background: #FFFFFF;
-    --font-color: #000000;
+    --dark-background: #242424;
+    --font-color: #CCCCCC;
     --icon-color: #AAAAAA;
-    --gui-border-color: #DDDDDD;
+    --gui-border-color: #666666;
     --gui-border-hover: #999999;
-	--icon-color-hover: #000000;
-	--tab-active-color: #3c9ad0;
-	--tab-inactive-color: #bcc9d1;
+    --icon-color-hover: #CCCCCC;
     
 }
 
@@ -25,7 +22,7 @@ html, body, #pageContainer {
 	width: 100%;
 	font-family: Consolas;
 	font-size: 12px;
-	background-color: var(--page-background);
+	background-color: var(--dark-background);
 }		
 
 span, div {
@@ -46,11 +43,11 @@ html {
 }
 
 ::-webkit-scrollbar { width: 8px; height: 6px}
-::-webkit-scrollbar-button {  background-color: var(--pane-background);}
-::-webkit-scrollbar-track {  background-color: var(--pane-backgroundd);}
-::-webkit-scrollbar-track-piece { background-color: var(--pane-background);}
+::-webkit-scrollbar-button {  background-color: var(--dark-background);}
+::-webkit-scrollbar-track {  background-color: var(--dark-background);}
+::-webkit-scrollbar-track-piece { background-color: var(--dark-background);}
 ::-webkit-scrollbar-thumb { height: 50px; background-color: #666;}
-::-webkit-scrollbar-corner { background-color: var(--pane-background);}
+::-webkit-scrollbar-corner { background-color: var(--dark-background);}
 ::-webkit-resizer { background-color: #666;}
 
 .esri-view .esri-view-root {
@@ -59,8 +56,9 @@ html {
 
 /* make the toolbar dark */
 .dijitToolbar {
+    border: 1px solid var(--gui-border-color);
     background: none;
-    background-color: var(--page-background);
+    background-color: var(--dark-background);
     padding: 8px;
     margin: 6px;
 }
@@ -89,15 +87,14 @@ html {
 
 /* no background lines in the toc */
 .dijitTreeExpandoLeaf {
-    background-image: url(images/p18.gif);
+    background-image: url(../images/p18.gif);
 }
 .dijitTreeNode {
-    background-image: url(images/p18.gif);
+    background-image: url(../images/p18.gif);
 }
 
 .dijitTreeContainer {
 	padding: 4px 6px 4px 0px;
-	background-color: var(--pane-background);
 }
 
 /* toc labels */
@@ -111,25 +108,24 @@ html {
 }
 .dijitTreeRow {
 	padding: 0px;
-	background-color: var(--pane-background);
 }
 .dijitTreeRowSelected .dijitTreeLabel {
-	background: #DDDDDD;
+	background: #333333;
 }
 
 /* tab labels */
 .dijitTreeLabel, .dijitTab, .dijitTabContainerTop-tabs {
-	
 	font-size: 14px;
 	color: var(--font-color) ; 
+   
 }
 
 .dijitTabInner {
 	padding: 2px 6px 2px 6px;
+	border: 1px solid var(--gui-border-hover);
 }
 .dijitTabChecked {
-	border-top: 3px solid var(--tab-active-color);
-	border-bottom: 1px solid var(--pane-background);
+	border-bottom: 1px solid var(--dark-background);
 }
 .dijitTabListWrapper  {
 	margin-left: -2px;
@@ -139,7 +135,7 @@ html {
 /* tab container */
 .dijitTabContainer {
 	padding: 0px 6px 6px 0px;
-	background-color: var(--page-background);
+	background-color: var(--dark-background);
 }
 
 /* first tab vertically aligned */
@@ -148,49 +144,49 @@ html {
     padding-right: 3px;
 }
 
-
-/* general tab */
-.dijitTabContainerTop-tabs  {
-	background-color: var(--page-background); 
-	border-bottom: 1px solid var(--page-background); 
+/* add some top margin to the tab  */
+.dijitTab {
+    margin: 0px 2px 0px 0px;
+    background: none;
 }
 
 /* general tab */
-.dijitTab  {
-	border-top: 3px solid var(--tab-inactive-color);
-	border-right: none; 
-	border-bottom: 1px solid var(--page-background); 
-	border-left: none; 
-
-    margin: 0px 2px 0px 0px;
-	background-color: var(--pane-background); 
+.dijitTab, .dijitTabContainerTop-tabs  {
+	border-color: var(--gui-border-color);
+	background-color: var(--dark-background); 
 }
 
 /* general tab hover border */
 .dijitTabHover {
-	border-top: 3px solid var(--tab-active-color);
+	border: 1px solid var(--gui-border-hover); 
 }
+
 
 /* active tab hover border */
 .dijitTabContainer .dijitTabCheckedHover {
-	border-top: 3px solid var(--tab-active-color);
+	border: 1px solid var(--gui-border-hover); 
+}
+
+/* hover on inactive tab */
+.dijitTabContainerTop .dijitTabHover {
+	border-bottom-color: var(--gui-border-color);
 }
 
 .dijitTabContainerTop-tabs .dijitTabChecked {
-	border-top: 3px solid var(--tab-active-color);
-    background-color: var(--pane-background);
-    border-bottom-color: var(--pane-background);
+    background-color: var(--dark-background);
+    border-bottom-color: var(--dark-background);
 }		
 
 .dijitTabPaneWrapper {
-	border: none;
-	background-color: var(--pane-background);
-	margin-top: -1px;
+	border-color: var(--gui-border-color);
+	background-color: var(--dark-background);
+	top: 0px;
 }
+
 
 /* the splitter gutter */
 .dijitSplitterV, .dijitSplitterH {
-	background-color: var(--page-background);
+	background-color: var(--dark-background);
 }
 
 .dijitTreeIcon {
@@ -198,9 +194,10 @@ html {
 	height: 16px;
 }
 
+
 .dijitSliderProgressBarH, .dijitSliderRemainingBarH, .dijitSliderLeftBumper, .dijitSliderRightBumper {
     border-color: var(--gui-border-color);
-    background: var(--page-background);
+    background: var(--dark-background);
 }
 .dijitSliderImageHandleH, .dijitSliderFocused .dijitSliderImageHandleH {
     border: 0;
@@ -210,8 +207,9 @@ html {
     background-image: url(../images/icon_grip_lines.svg);
 }
 
+
 .dijitContentPane {
-	background-color: var(--page-background); 
+	background-color: var(--dark-background); 
 }
 
 .dijitTooltipContainer {
@@ -245,7 +243,7 @@ html {
 }
 
 .dojoxColorPicker {
-    background: var(--pane-background); 
+    background: var(--dark-background); 
     border: 1px solid var(--gui-border-color);
 	padding: 4px;
 	border-radius: 0px;
@@ -266,5 +264,5 @@ html {
     font-family: Consolas;
 	font-size: 12px;
 	color: var(--font-color) ;    
-	background-color: var(--pane-background); 
+	background-color: var(--dark-background); 
 }

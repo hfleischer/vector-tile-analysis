@@ -77,7 +77,7 @@ export class LayoutTree implements ILayout {
 
         var flatItemList : ITreeData[] = [];
 
-        var rootItem = new TreeDataImpl(DataType.get(DataType.INDEX_________UNKNOWN), LayoutTree.ROOT_ID, LayoutTree.ROOT_ID, 0, Color.white(), null, null);
+        var rootItem = new TreeDataImpl(DataType.get(DataType.INDEX_________UNKNOWN), LayoutTree.ROOT_ID, LayoutTree.ROOT_ID, 0, Color.mapContentIconNode(), null, null);
         flatItemList.push(rootItem);
 
         treeDataList.forEach(treeData => {
@@ -131,6 +131,7 @@ export class LayoutTree implements ILayout {
                 delete this._adjustWidthsTimer);
                 this.containerNode.style.width = "auto";
                 this.containerNode.style.width = this.domNode.scrollWidth > this.domNode.offsetWidth ? "auto" : "99%"
+                this.containerNode.style.height = '100%';
             },
             _createTreeNode: function(data: any): object {
 

@@ -37,7 +37,7 @@ export class PaintSetImpl implements IPaintSet {
 
         this.paints = paintType.createPaints(layerSet, this);
 
-        this.treeDataItem = new TreeDataImpl(DataType.get(DataType.INDEX_______PAINT_SET), this.getId(), title, -1, Color.white(), treeData.getExtent(), null);
+        this.treeDataItem = new TreeDataImpl(DataType.get(DataType.INDEX_______PAINT_SET), this.getId(), title, -1, Color.mapContentIconNode(), treeData.getExtent(), null);
         for (let i=0; i<this.paints.length; i++) {
             this.treeDataItem.addChild(this.paints[i].getTreeData());
         }     

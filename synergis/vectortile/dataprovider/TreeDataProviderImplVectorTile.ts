@@ -50,7 +50,7 @@ export class TreeDataProviderImplVectorTile implements ITreeDataProvider {
             return this.filterKeysByLayerName[layer.name];
         } else {
             //check if the layer has any of the following keys, in the given order
-            let filterKeys: string[] = ['_symbol', '_name', '_name_global', '_name_en', '_minzoom'];   
+            let filterKeys: string[] = ['_name', '_name_global', '_name_en', '_symbol', '_minzoom'];   
             for (let i=0; i<filterKeys.length; i++) {
                 if (layer.valueLookup.hasKey(filterKeys[i]) && layer.getValueSet(filterKeys[i]).length > 0) {
                     return filterKeys[i];

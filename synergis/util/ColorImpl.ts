@@ -51,8 +51,9 @@ export class ColorImpl implements IColor {
     };
 
     deriveInactiveColor(): IColor {
-        let derivedHsv: number[] = [ this.hsv[0], this.hsv[1] * 0.5, this.hsv[2] * 0.5 ];
-        return new ColorImpl(derivedHsv);
+        //let derivedHsv: number[] = [ this.hsv[0], this.hsv[1] * 0.5, this.hsv[2] * 0.5 ];
+        //return new ColorImpl(derivedHsv);
+        return Color.parseHex('#CCCCCC');
     }
 
     deriveColor(index: number, total: number): IColor {
@@ -63,7 +64,7 @@ export class ColorImpl implements IColor {
         let fraction: number = index * 1.0 / total;
 
         //create a color of some hue away of this color
-        let derivedHsv: number[] = [ this.hsv[0] + ColorImpl.HUE_RANGE_DERIVE * fraction, 1.0, 0.75 ];
+        let derivedHsv: number[] = [ this.hsv[0] + ColorImpl.HUE_RANGE_DERIVE * fraction, 1.0, this.hsv[2] ];
         let derivedRgb: number[] = [];
 
         //convert to rgb

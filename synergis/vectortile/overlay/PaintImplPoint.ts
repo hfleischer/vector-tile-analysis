@@ -21,7 +21,7 @@ export class PaintImplPoint extends BasePaint implements IPaint {
 
         super(layerSet, paintSet);
 
-        this.color = paintSet.getColor();
+        this.color = Color.parseHex('#FF0000'); //paintSet.getColor();
 
         this.styleLayer = {
             id: this.getId(),
@@ -41,15 +41,15 @@ export class PaintImplPoint extends BasePaint implements IPaint {
             }
         }
 
-        this.treeDataItem = new TreeDataImpl(DataType.get(DataType.INDEX___________PAINT), this.getId(), 'vertices', -1, Color.white(), paintSet.getExtent(), null);
+        this.treeDataItem = new TreeDataImpl(DataType.get(DataType.INDEX___________PAINT), this.getId(), 'vertices', -1, Color.mapContentIconNode(), paintSet.getExtent(), null);
 
         let colorTreeDataItem: ITreeData = new TreeDataImpl(DataType.get(DataType.INDEX_____STYLE_COLOR), Uid.random16(), this.color.getHex(), -1, this.color, paintSet.getExtent(), null);
         this.treeDataItem.addChild(colorTreeDataItem);        
 
-        let opacityTreeDataItem: ITreeData = new TreeDataImpl(DataType.get(DataType.INDEX___STYLE_OPACITY), Uid.random16(), 'opacity', opacity, Color.white(), paintSet.getExtent(), null);
+        let opacityTreeDataItem: ITreeData = new TreeDataImpl(DataType.get(DataType.INDEX___STYLE_OPACITY), Uid.random16(), 'opacity', opacity, Color.mapContentIconNode(), paintSet.getExtent(), null);
         this.treeDataItem.addChild(opacityTreeDataItem);
 
-        let dimensionTreeDataItem: ITreeData = new TreeDataImpl(DataType.get(DataType.INDEX_STYLE_DIMENSION), Uid.random16(), 'radius', radius, Color.white(), paintSet.getExtent(), null);
+        let dimensionTreeDataItem: ITreeData = new TreeDataImpl(DataType.get(DataType.INDEX_STYLE_DIMENSION), Uid.random16(), 'radius', radius, Color.mapContentIconNode(), paintSet.getExtent(), null);
         this.treeDataItem.addChild(dimensionTreeDataItem);
 
     }

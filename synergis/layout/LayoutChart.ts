@@ -97,16 +97,6 @@ export class LayoutChart implements ILayout {
             this.chart.dispose();
         }
 
-        /*
-        while(this.htmlElement.childNodes.length > 0) {
-            this.htmlElement.removeChild(this.htmlElement.childNodes[0]);
-        }
-        let chartDiv: HTMLDivElement = document.createElement('div');
-        chartDiv.style.height = '100%';
-        chartDiv.style.width = '100%';
-        this.htmlElement.appendChild(chartDiv);
-        */
-
         this.chart = am4core.create(this.chartDiv, am4charts.TreeMap);
         this.chart.maxLevels = 1; //one level at a time
         this.chart.dataFields.value = 'value';
@@ -119,6 +109,7 @@ export class LayoutChart implements ILayout {
         this.chart.paddingRight = 0;
         this.chart.paddingTop = 3;
         this.chart.paddingBottom = 0;
+        //this.chart.background.fill = am4core.color('#DDDDDD'); //--page-background
         
         this.chart.zoomOutButton.disabled  = true;
         
@@ -169,8 +160,10 @@ export class LayoutChart implements ILayout {
         let seriesTemplate: am4charts.TreeMapSeries = this.chart.seriesTemplates.create(pIndex);
         let columnTemplate: am4charts.Column = seriesTemplate.columns.template;
         
+
+        seriesTemplate.stroke = am4core.color('#DDDDDD'); //--page-background
         seriesTemplate.strokeWidth = 2;
-        seriesTemplate.strokeOpacity = 0;
+        seriesTemplate.strokeOpacity = 1;
         
         columnTemplate.tooltipPosition = 'pointer';
         columnTemplate.tooltipText = '{name}';
@@ -198,7 +191,7 @@ export class LayoutChart implements ILayout {
         seriesBullet.dx = 5;
         seriesBullet.dy = 5;
         seriesBullet.label.text = '{name}';
-        seriesBullet.label.fontSize = 12;
+        seriesBullet.label.fontSize = 14;
         seriesBullet.label.horizontalCenter = 'left'; 
         seriesBullet.label.verticalCenter = 'top';
  
